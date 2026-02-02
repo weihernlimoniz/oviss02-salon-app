@@ -14,7 +14,7 @@ export const MOCK_STYLISTS: Stylist[] = [
     name: 'Jonathan',
     title: 'Creative Director',
     bio: 'Precision cutting and master vision for modern styles.',
-    photo: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&q=80&w=400',
+    photo: 'https://picsum.photos/seed/jonathan/400/400',
     availableSlots: ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00']
   },
   {
@@ -22,7 +22,7 @@ export const MOCK_STYLISTS: Stylist[] = [
     name: 'Alice',
     title: 'Senior Stylist',
     bio: 'Expert in chemical treatments and contemporary coloring.',
-    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=400',
+    photo: 'https://picsum.photos/seed/alice/400/400',
     availableSlots: ['09:30', '10:30', '13:30', '14:30', '15:30']
   },
   {
@@ -30,7 +30,7 @@ export const MOCK_STYLISTS: Stylist[] = [
     name: 'TuTu',
     title: 'Stylist',
     bio: 'Dynamic stylist focused on trendy cuts and scalp health.',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400',
+    photo: 'https://picsum.photos/seed/tutu/400/400',
     availableSlots: ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00']
   }
 ];
