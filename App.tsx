@@ -17,75 +17,25 @@ const App: React.FC = () => {
   const [appointments, setAppointments] = useState<Appointment[]>([]);
   const [notifications, setNotifications] = useState<Notification[]>([]);
 
-  // Initialize persistence and mock data
   useEffect(() => {
-    const savedUser = localStorage.getItem('salon_user');
+    const savedUser = localStorage.getItem('oviss_user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
       setIsLoggedIn(true);
-    }
-
-    const savedAppointments = localStorage.getItem('salon_appointments');
-    if (savedAppointments) {
-      setAppointments(JSON.parse(savedAppointments));
     }
   }, []);
 
   const handleLogin = (userData: User) => {
     setUser(userData);
     setIsLoggedIn(true);
-    localStorage.setItem('salon_user', JSON.stringify(userData));
+    localStorage.setItem('oviss_user', JSON.stringify(userData));
   };
 
   const handleLogout = () => {
     setUser(null);
     setIsLoggedIn(false);
-    localStorage.removeItem('salon_user');
+    localStorage.removeItem('oviss_user');
     setCurrentPage('home');
-  };
-
-  const addAppointment = (appt: Appointment) => {
-    const updated = [appt, ...appointments];
-    setAppointments(updated);
-    localStorage.setItem('salon_appointments', JSON.stringify(updated));
-    
-    // Add notification
-    const newNotif: Notification = {
-      id: Math.random().toString(36).substr(2, 9),
-      title: 'Booking Confirmed!',
-      message: `Your appointment on ${appt.date} at ${appt.time} is confirmed.`,
-      type: 'booking',
-      timestamp: new Date()
-    };
-    setNotifications([newNotif, ...notifications]);
-  };
-
-  const updateAppointment = (updatedAppt: Appointment) => {
-    const updated = appointments.map(a => a.id === updatedAppt.id ? updatedAppt : a);
-    setAppointments(updated);
-    localStorage.setItem('salon_appointments', JSON.stringify(updated));
-    
-    setNotifications([{
-      id: Math.random().toString(36).substr(2, 9),
-      title: 'Booking Rescheduled',
-      message: `Your appointment has been moved to ${updatedAppt.date} at ${updatedAppt.time}.`,
-      type: 'booking',
-      timestamp: new Date()
-    }, ...notifications]);
-  };
-
-  const cancelAppointment = (id: string) => {
-    const updated = appointments.filter(a => a.id !== id);
-    setAppointments(updated);
-    localStorage.setItem('salon_appointments', JSON.stringify(updated));
-    
-    setNotifications([{
-      id: Math.random().toString(36).substr(2, 9),
-      title: 'Booking Cancelled',
-      message: 'Your appointment has been successfully cancelled.',
-      type: 'booking',
-      timestamp: new Date()
-    }, ...notifications]);
   };
 
   if (!isLoggedIn) {
@@ -98,9 +48,9 @@ const App: React.FC = () => {
       case 'appointment': return (
         <AppointmentPage 
           appointments={appointments} 
-          onAdd={addAppointment} 
-          onUpdate={updateAppointment}
-          onCancel={cancelAppointment}
+          onAdd={(a) => setAppointments([a, ...appointments])} 
+          onUpdate={(ua) => setAppointments(appointments.map(a => a.id === ua.id ? ua : a))}
+          onCancel={(id) => setAppointments(appointments.filter(a => a.id !== id))}
         />
       );
       case 'about': return <AboutUs />;
@@ -118,7 +68,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white shadow-xl relative w-full max-w-md mx-auto overflow-x-hidden">
+    <div className="flex flex-col min-h-screen bg-white w-full max-w-md mx-auto relative overflow-x-hidden border-x border-gray-100">
       <Header 
         notificationCount={notifications.length} 
         onNotificationClick={() => setCurrentPage('notifications')}

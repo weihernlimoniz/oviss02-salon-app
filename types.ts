@@ -13,7 +13,7 @@ export interface Service {
   id: string;
   name: string;
   price: number;
-  duration: number; // in minutes
+  duration: number;
 }
 
 export interface Stylist {
@@ -22,7 +22,7 @@ export interface Stylist {
   title: string;
   bio?: string;
   photo: string;
-  availableSlots: string[]; // ['09:00', '10:00', ...]
+  availableSlots: string[];
 }
 
 export interface Outlet {
@@ -37,8 +37,8 @@ export interface Appointment {
   id: string;
   userId: string;
   outletId: string;
-  stylistId: string; // 'no-preference' or stylist ID
-  serviceIds: string[]; // Changed from serviceId: string to support multiple selection
+  stylistId: string;
+  serviceIds: string[];
   date: string;
   time: string;
   status: 'upcoming' | 'completed' | 'cancelled';
