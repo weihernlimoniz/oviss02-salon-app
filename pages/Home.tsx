@@ -1,35 +1,34 @@
-
 import React from 'react';
 import { BANNER_IMAGE, MOCK_SERVICES } from '../constants';
-import { Scissors } from 'lucide-react';
+import { Scissors, Clock } from 'lucide-react';
 
 const Home: React.FC = () => {
   return (
-    <div className="pb-8">
+    <div className="pb-8 animate-fade-in">
       {/* Hero Banner */}
       <div className="px-6 py-4">
-        <div className="relative rounded-2xl overflow-hidden shadow-2xl h-48 group">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl h-56 group">
           <img 
             src={BANNER_IMAGE} 
             alt="Promotion Banner" 
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex flex-col justify-end p-6">
-            <span className="text-white/80 text-xs font-bold uppercase tracking-widest mb-1">Seasonal Special</span>
-            <h2 className="text-white text-2xl font-serif font-bold leading-tight">Elevate Your Style <br /> at Oviss Salon</h2>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8">
+            <span className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em] mb-2">Artistry Excellence</span>
+            <h2 className="text-white text-3xl font-serif font-bold leading-tight">Elevate Your Style <br /> at Oviss Salon</h2>
           </div>
         </div>
       </div>
 
       {/* Services Section */}
-      <section className="mt-8 px-6">
-        <div className="flex items-center justify-between mb-6">
+      <section className="mt-10 px-6">
+        <div className="flex items-end justify-between mb-8">
           <div>
-            <h3 className="text-xl font-serif font-bold text-gray-900">Services & Pricing</h3>
-            <p className="text-gray-500 text-sm">Experience our curated offerings</p>
+            <h3 className="text-2xl font-serif font-bold text-gray-900">Our Services</h3>
+            <p className="text-gray-400 text-sm mt-1">Curated hair experiences</p>
           </div>
-          <div className="p-2 bg-gray-50 rounded-full">
-            <Scissors size={20} className="text-gray-400" />
+          <div className="p-3 bg-black rounded-2xl shadow-lg shadow-black/10">
+            <Scissors size={20} className="text-white" />
           </div>
         </div>
 
@@ -37,32 +36,32 @@ const Home: React.FC = () => {
           {MOCK_SERVICES.map((service) => (
             <div 
               key={service.id}
-              className="group flex items-center justify-between p-4 rounded-xl border border-gray-100 bg-white hover:border-black/10 hover:shadow-md transition-all cursor-pointer"
+              className="group flex items-center justify-between p-5 rounded-2xl border border-gray-100 bg-white hover:border-black transition-all cursor-pointer shadow-sm hover:shadow-md"
             >
               <div className="flex flex-col">
-                <span className="font-semibold text-gray-900 group-hover:text-black transition-colors">
+                <span className="font-bold text-gray-900 text-lg">
                   {service.name}
                 </span>
-                <span className="text-xs text-gray-400 uppercase tracking-tighter">
-                  {service.duration} Minutes
+                <span className="text-[10px] text-gray-400 uppercase tracking-widest flex items-center gap-1 mt-1">
+                  <Clock size={10} /> {service.duration} Mins
                 </span>
               </div>
-              <div className="flex items-center gap-1 text-gray-900 font-bold bg-gray-50 px-3 py-1 rounded-full group-hover:bg-black group-hover:text-white transition-all">
-                <span className="text-[10px] opacity-60 mr-0.5">From RM</span>
-                <span>{service.price.toFixed(0)}</span>
+              <div className="flex flex-col items-end">
+                <span className="text-xs text-gray-400 font-medium">From</span>
+                <span className="text-xl font-serif font-bold text-black">RM {service.price.toFixed(0)}</span>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Quote */}
-      <div className="mt-12 px-6">
-        <div className="bg-stone-50 rounded-3xl p-8 text-center border border-stone-100">
-          <p className="font-serif italic text-gray-600 mb-4 leading-relaxed">
-            "Your hair is the crown you never take off."
+      {/* Philosophy */}
+      <div className="mt-12 px-6 mb-12">
+        <div className="bg-stone-50 rounded-[2.5rem] p-10 text-center border border-stone-100">
+          <p className="font-serif italic text-gray-600 text-lg leading-relaxed">
+            "Your hair is the crown you never take off. We make sure it shines."
           </p>
-          <div className="w-12 h-0.5 bg-gray-200 mx-auto"></div>
+          <div className="w-12 h-1 bg-black/10 mx-auto mt-6 rounded-full"></div>
         </div>
       </div>
     </div>
