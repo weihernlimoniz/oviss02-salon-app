@@ -1,0 +1,7 @@
+{
+  "name": "Oviss Salon Customer App",
+  "description": "Premium hair artistry and booking app for Oviss Salon customers.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
